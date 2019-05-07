@@ -7,7 +7,7 @@ import sys
 from decode import decode
 
 def main():
-	has_breakpoint = sys.argv[2].lower() == 'true'
+    has_breakpoint = sys.argv[2].lower() == 'true'
     print decode(sys.argv[1], has_breakpoint)
 
 if __name__ == '__main__':

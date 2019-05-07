@@ -118,7 +118,7 @@ class MCMC:
         start_time = time.time()
         loglikelihood = []
         accepted = []
-        while(time.time()-start_time<runningtime):
+        while(int(time.time()-start_time)<runningtime):
             f2 = self.generate_f(self.cur_f, self.set1, self.set2)
             pf2 = self.Pf(f2)
             pf1 = self.Pf(self.cur_f)
@@ -245,7 +245,7 @@ def multi_merge(ciphertext, np=10):
     
     final_mcmc = MCMC(ciphertext=ciphertext)
     final_mcmc.cur_f = best_f
-    final_mcmc.run(5000)
+    final_mcmc.run(runningtime=30)
     return final_mcmc.decode()
     
     

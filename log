@@ -1,0 +1,62 @@
+[2019-05-07 18:50:01.164288] !!! ERROR !!!
+[2019-05-07 18:50:01.192009]   File "./decode", line 11
+    print decode(sys.argv[1], has_breakpoint)
+                                            ^
+IndentationError: unindent does not match any outer indentation level
+
+[2019-05-07 18:50:01.232003] !!! ERROR !!!
+[2019-05-07 18:50:01.245223]   File "./decode", line 11
+    print decode(sys.argv[1], has_breakpoint)
+                                            ^
+IndentationError: unindent does not match any outer indentation level
+
+[2019-05-07 18:53:30.689837] !!! ERROR !!!
+[2019-05-07 18:53:30.717480] Traceback (most recent call last):
+  File "test.py", line 76, in main
+    (elapsed_time1, score1, max_score1, output) = test(executable, plaintext, ciphertext, False)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-07 18:55:20.515008] !!! ERROR !!!
+[2019-05-07 18:55:20.541728] Traceback (most recent call last):
+  File "test.py", line 76, in main
+    (elapsed_time1, score1, max_score1, output) = test(executable, plaintext, ciphertext, False)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-07 18:56:57.505504] !!! ERROR !!!
+[2019-05-07 18:56:57.531904] Traceback (most recent call last):
+  File "test.py", line 76, in main
+    (elapsed_time1, score1, max_score1, output) = test(executable, plaintext, ciphertext, False)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-07 18:59:02.983499] !!! ERROR !!!
+[2019-05-07 18:59:03.010363] Traceback (most recent call last):
+  File "test.py", line 76, in main
+    (elapsed_time1, score1, max_score1, output) = test(executable, plaintext, ciphertext, False)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-07 19:00:35.109352] !!! ERROR !!!
+[2019-05-07 19:00:35.136058] Traceback (most recent call last):
+  File "test.py", line 76, in main
+    (elapsed_time1, score1, max_score1, output) = test(executable, plaintext, ciphertext, False)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
