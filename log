@@ -60,3 +60,185 @@ ComparisonError: strings to compare must have the same length
     raise ComparisonError("strings to compare must have the same length")
 ComparisonError: strings to compare must have the same length
 
+[2019-05-07 21:10:18.786590] !!! ERROR !!!
+[2019-05-07 21:10:18.851765] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 261, in decode
+    plaintext = multi_merge(ciphertext, 10)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 240, in multi_merge
+    data = p.map(run, zip([ciphertext]*np, [time.time()*random.random() for i in range(np)]))
+  File "/usr/lib/python2.7/multiprocessing/pool.py", line 253, in map
+    return self.map_async(func, iterable, chunksize).get()
+  File "/usr/lib/python2.7/multiprocessing/pool.py", line 572, in get
+    raise self._value
+IndexError: list index out of range
+
+[2019-05-07 23:34:31.601055] !!! ERROR !!!
+[2019-05-07 23:34:31.627908] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 348, in decode
+    print(breakpoint_range(ciphertext))
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 314, in breakpoint_range
+    a, b = checkvalid(content[m:])
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 281, in checkvalid
+    for i in self.alphabet:
+NameError: global name 'self' is not defined
+
+[2019-05-07 23:35:43.395875] !!! ERROR !!!
+[2019-05-07 23:35:43.435186] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 348, in decode
+    print(breakpoint_range(ciphertext))
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 314, in breakpoint_range
+    a, b = checkvalid(content[m:])
+TypeError: checkvalid() takes exactly 2 arguments (1 given)
+
+[2019-05-07 23:36:34.757357] !!! ERROR !!!
+[2019-05-07 23:36:34.796502] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 348, in decode
+    print(breakpoint_range(ciphertext))
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 314, in breakpoint_range
+    a, b = checkvalid(content[m:])
+TypeError: checkvalid() takes exactly 2 arguments (1 given)
+
+[2019-05-07 23:36:48.466330] !!! ERROR !!!
+[2019-05-07 23:36:48.506452] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 348, in decode
+    print(breakpoint_range(ciphertext))
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 314, in breakpoint_range
+    a, b = checkvalid(content[m:])
+TypeError: checkvalid() takes exactly 2 arguments (1 given)
+
+[2019-05-07 23:37:13.439659] !!! ERROR !!!
+[2019-05-07 23:37:13.479106] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 348, in decode
+    print(breakpoint_range(ciphertext))
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 314, in breakpoint_range
+    a, b = checkvalid(content[m:])
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 281, in checkvalid
+    for i in self.alphabet:
+NameError: global name 'self' is not defined
+
+[2019-05-07 23:37:43.066634] !!! ERROR !!!
+[2019-05-07 23:37:43.106330] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 346, in decode
+    print(breakpoint_range(ciphertext))
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 318, in breakpoint_range
+    leftsets = checkvalid(content[:self.minbs])
+NameError: global name 'self' is not defined
+
+[2019-05-07 23:38:05.350316] !!! ERROR !!!
+[2019-05-07 23:38:05.389768] Traceback (most recent call last):
+  File "test.py", line 77, in main
+    (elapsed_time2, score2, max_score2, output) = test(executable, plaintext, ciphertext_with_breakpoint, True)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-07 23:58:24.503591] !!! ERROR !!!
+[2019-05-07 23:58:24.543578] Traceback (most recent call last):
+  File "test.py", line 77, in main
+    (elapsed_time2, score2, max_score2, output) = test(executable, plaintext, ciphertext_with_breakpoint, True)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-08 00:01:32.692599] !!! ERROR !!!
+[2019-05-08 00:01:32.732770] Traceback (most recent call last):
+  File "test.py", line 77, in main
+    (elapsed_time2, score2, max_score2, output) = test(executable, plaintext, ciphertext_with_breakpoint, True)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-08 00:03:00.929951] !!! ERROR !!!
+[2019-05-08 00:03:00.972823] Traceback (most recent call last):
+  File "test.py", line 76, in main
+    (elapsed_time1, score1, max_score1, output) = test(executable, plaintext, ciphertext, False)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-08 00:04:08.567221] !!! ERROR !!!
+[2019-05-08 00:04:08.607194] Traceback (most recent call last):
+  File "test.py", line 76, in main
+    (elapsed_time1, score1, max_score1, output) = test(executable, plaintext, ciphertext, False)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-08 00:09:09.580906] !!! ERROR !!!
+[2019-05-08 00:09:09.634079] Traceback (most recent call last):
+  File "test.py", line 76, in main
+    (elapsed_time1, score1, max_score1, output) = test(executable, plaintext, ciphertext, False)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-08 00:10:27.241053] !!! ERROR !!!
+[2019-05-08 00:10:27.293671] Traceback (most recent call last):
+  File "test.py", line 76, in main
+    (elapsed_time1, score1, max_score1, output) = test(executable, plaintext, ciphertext, False)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-08 00:15:52.620574] !!! ERROR !!!
+[2019-05-08 00:15:52.673568] Traceback (most recent call last):
+  File "test.py", line 76, in main
+    (elapsed_time1, score1, max_score1, output) = test(executable, plaintext, ciphertext, False)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-08 00:18:39.424453] !!! ERROR !!!
+[2019-05-08 00:18:39.477041] Traceback (most recent call last):
+  File "test.py", line 76, in main
+    (elapsed_time1, score1, max_score1, output) = test(executable, plaintext, ciphertext, False)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+

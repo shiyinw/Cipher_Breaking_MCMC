@@ -41,7 +41,7 @@ def test(executable_path, plaintext, ciphertext, breakpoint):
     try:
         start_time = time()
         output = subprocess.check_output(['./'+executable_file, ciphertext, str(breakpoint)], stderr=subprocess.STDOUT).rstrip('\r\n')
-        print(output)
+        print output #
         end_time = time()
     except subprocess.CalledProcessError as e:
         os.chdir(start_dir) ###### CHANGE BACK TO ORIGINAL DIRECTORY
