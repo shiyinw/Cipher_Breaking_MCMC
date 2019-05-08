@@ -78,7 +78,7 @@ class MCMC:
         for i in range(1, len(ciphertext), 1): #including /n
             self.ciphertext_transition[ciphertext[i]][ciphertext[i-1]] += 1
         self.ciphertext = ciphertext
-        self.set1, self.set2 = self.checkvalid(self.ciphertext)
+        self.set1, self.set2 = checkvalid(self.ciphertext)
         
     def Pf(self, code2idx):
         logPf = logP[code2idx[self.ciphertext[0]]]
@@ -91,32 +91,6 @@ class MCMC:
                         logPf += self.ciphertext_transition[a][b] * logM[code2idx[a], code2idx[b]]
         
         return logPf
-
-    def checkvalid(self, content):
-        transition = collections.Counter()
-        for i in self.alphabet:
-            transition[i] = collections.Counter()
-        for i in range(1, len(content), 1):  # including /n
-            transition[content[i - 1]][content[i]] += 1
-
-        notrepeat = []  # ' ' & '.'
-        for a in self.alphabet:
-            if (transition[a][a] == 0):
-                notrepeat.append(a)
-
-        set1 = []  # " "
-        set2 = []  # "."
-        for a in notrepeat:
-            if (len(transition[a]) == 0):
-                set2.append(a)
-            elif (len(transition[a]) == 1 and list(transition[a].keys())[0] in notrepeat):
-                set1.append(list(transition[a].keys())[0])
-                set2.append(a)
-
-        if (len(transition) == 28):  # All the char have occurred. So we must have a ". " pair.
-            return set2, set1
-        else:
-            return set2, notrepeat
 
     def generate_f(self, oldf, set1, set2):
         # set1: "."
@@ -167,6 +141,10 @@ class MCMC:
             elif pf2=="not exist":
                 accepted.append(False)
                 pass
+
+            elif pf2-pf1>5:
+                self.cur_f = f2
+                accepted.append(True)
             
             elif rand<min(1, np.exp(pf2-pf1)):
                 self.cur_f = f2
@@ -293,8 +271,6 @@ class MCMC_B:
         for i in range(1, len(content), 1):  # including /n
             transition[content[i - 1]][content[i]] += 1
 
-        valid = False
-
         notrepeat = []  # ' ' & '.'
         for a in self.alphabet:
             if (transition[a][a] == 0):
@@ -337,7 +313,7 @@ class MCMC_B:
             accept_bool = True
         return accept_bool
 
-    def run(self, runningtime=60):
+    def run(self, runningtime=120):
         start_time = time.time()
         while(time.time()-start_time< runningtime):
             new_f1 = self.generate_f(self.cur_f1)
@@ -522,14 +498,14 @@ def breakpoint_range(content):
 
 def decode(ciphertext, has_breakpoint):
     if not has_breakpoint:
-        plaintext, _ = multi_merge(ciphertext, 10)
+        plaintext, _ = multi_merge(ciphertext, 300)
     else:
         minb, maxb, leftsets, rightsets = breakpoint_range(ciphertext)
-        lefttext, single_f1 = multi_merge(ciphertext[:minb], 10)
-        righttext, single_f2 = multi_merge(ciphertext[maxb:], 10)
+        lefttext, single_f1 = multi_merge(ciphertext[:minb], runningtime=min(60*5, len(ciphertext)))
+        righttext, single_f2 = multi_merge(ciphertext[maxb:], runningtime=min(60*5, len(ciphertext)))
         try:
             mcmc = MCMC_B(ciphertext=ciphertext, f1=single_f1, f2=single_f2)
-            plaintext = mcmc.run(runningtime=60)
+            plaintext = mcmc.run(runningtime=min(60*0, len(ciphertext)))
         except:
             plaintext = lefttext + ciphertext[minb:maxb] + righttext
 
