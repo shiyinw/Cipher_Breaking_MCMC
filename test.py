@@ -73,7 +73,7 @@ def main():
     ciphertext = first_line('./test_ciphertext.txt')
     ciphertext_with_breakpoint = first_line('./test_ciphertext_breakpoint.txt')
 
-    name = "handout"
+    name = "warandpeace"
     plaintext = first_line('data/plaintext_{}.txt'.format(name))
     ciphertext = first_line('data/ciphertext_{}.txt'.format(name))
     ciphertext_with_breakpoint = first_line('data/ciphertext_{}_breakpoint.txt'.format(name))
