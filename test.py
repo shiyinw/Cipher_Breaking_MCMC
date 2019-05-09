@@ -41,7 +41,7 @@ def test(executable_path, plaintext, ciphertext, breakpoint):
     try:
         start_time = time()
         output = subprocess.check_output(['./'+executable_file, ciphertext, str(breakpoint)], stderr=subprocess.STDOUT).rstrip('\r\n')
-        # print(output)
+        print(output)
         end_time = time()
     except subprocess.CalledProcessError as e:
         os.chdir(start_dir) ###### CHANGE BACK TO ORIGINAL DIRECTORY
@@ -73,10 +73,10 @@ def main():
     ciphertext = first_line('./test_ciphertext.txt')
     ciphertext_with_breakpoint = first_line('./test_ciphertext_breakpoint.txt')
 
-    # name = "warandpeace"
-    # plaintext = first_line('data/plaintext_{}.txt'.format(name))
-    # ciphertext = first_line('data/ciphertext_{}.txt'.format(name))
-    # ciphertext_with_breakpoint = first_line('data/ciphertext_{}_breakpoint.txt'.format(name))
+    name = "handout"
+    plaintext = first_line('data/plaintext_{}.txt'.format(name))
+    ciphertext = first_line('data/ciphertext_{}.txt'.format(name))
+    ciphertext_with_breakpoint = first_line('data/ciphertext_{}_breakpoint.txt'.format(name))
 
     print "Running your code..."
     try:
@@ -92,7 +92,7 @@ def main():
         print "Score (with breakpoint): " + str(score2) + " out of " + str(max_score2)
         if max_score1 != 1 and max_score2 != 1: # Don't make upload.zip if there were errors
             print "Creating an upload.zip that you can submit..."
-            subprocess.call(['zip','-r','upload.zip'] + sorted(os.listdir('.')))
+            subprocess.call(['zip','-r','upload.zip'] + sorted([x for x in os.listdir('.') if x[0]!='.']))
         else:
             print "Your code seems to have errors. Please fix them and then rerun this test."
 

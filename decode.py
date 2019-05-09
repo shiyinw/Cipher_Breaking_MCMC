@@ -6,6 +6,8 @@ warnings.filterwarnings("ignore")
 from multiprocessing import Pool
 import traceback
 
+SHORT_TEXT = 1000
+
 P = np.zeros(shape=([28]))
 with open("data/letter_probabilities.csv", "r") as f:
     line = f.readline()
@@ -160,7 +162,6 @@ class MCMC:
                 f2[i] = f2[candidate]
                 f2[candidate] = tmp
         return f2
-
     
     def decode(self):
         s = ""
@@ -202,6 +203,42 @@ def decode_content(content, f):
         s += idx2alpha[f[c]]
     return s
 
+def match_words(content):
+    ws = content.replace(".", "").split(" ")
+    score = 0
+    for w in ws:
+        if len(w) > 0 and w in words_dict[w[0]]:
+            score += 1
+    score = float(score)/len(ws)
+    return score
+
+class MCMC_short(MCMC):
+    def Pf(self, code2idx):
+        decoded_text = decode_content(self.ciphertext, code2idx)
+        score = match_words(decoded_text)
+        return score
+
+    def generate_f(self, oldf, set1, set2):
+        # set1: "."
+        # set2 : " "
+        newalphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+                         's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        a, b = random.sample(newalphabet, 2)
+        f2 = oldf.copy()
+        f2[a] = oldf[b]
+        f2[b] = oldf[a]
+        for i, v in f2.items():
+            if (v == 27 and i not in set1):
+                candidate = random.sample(set1, k=1)[0]
+                tmp = f2[i]
+                f2[i] = f2[candidate]
+                f2[candidate] = tmp
+            if (v == 26 and i not in set2):
+                candidate = random.sample(set2, k=1)[0]
+                tmp = f2[i]
+                f2[i] = f2[candidate]
+                f2[candidate] = tmp
+        return f2
 
 
 class MCMC_B(MCMC):
@@ -247,7 +284,7 @@ class MCMC_B(MCMC):
             self.ciphertext_transition_right[a] = collections.Counter()
         for i in range(self.maxbs+1, len(self.ciphertext), 1):  # including /n
             self.ciphertext_transition_right[ciphertext[i]][ciphertext[i - 1]] += 1
-
+        self.b_sigma = (self.maxbs-self.minbs)*0.2
 
     def refine_breakpoint(self):
         best_breakpoint = self.breakpoint
@@ -269,6 +306,10 @@ class MCMC_B(MCMC):
         self.breakpoint = best_breakpoint+self.minbs
 
     def Pf(self, code2idx1, code2idx2, breakpoint):
+        if breakpoint == len(self.ciphertext):
+            return "not exist", "not exist"
+
+
         logPf1 = logP[code2idx1[self.ciphertext[0]]]
 
         for a in self.alphabet:
@@ -299,7 +340,7 @@ class MCMC_B(MCMC):
                         logPf2 += self.ciphertext_transition_right[a][b] * logM[code2idx2[a], code2idx2[b]]
 
         if logPf2 != "not exist":
-            for idx in range(breakpoint + 1, self.maxbs+1, 1):
+            for idx in range(breakpoint + 1, self.maxbs, 1):
                 if logM[code2idx2[self.ciphertext[idx]], code2idx2[self.ciphertext[idx - 1]]] == -float('inf'):
                     logPf2 = "not exist"
                     return logPf1, logPf2
@@ -314,7 +355,6 @@ class MCMC_B(MCMC):
         for c in range(self.breakpoint, len(self.ciphertext), 1):
             s += self.idx2alpha[self.cur_f2[self.ciphertext[c]]]
         return s
-
 
     def run(self, runningtime=-1):
         if runningtime == -1:
@@ -334,7 +374,7 @@ class MCMC_B(MCMC):
             if self.accept(newscore=pfnew_f2, oldscore=pfold_f2):
                 self.cur_f2 = new_f2
 
-            new_b = int(np.random.normal(loc=self.breakpoint, scale=(self.maxbs-self.minbs)*0.2))
+            new_b = int(np.random.normal(loc=self.breakpoint, scale=self.b_sigma))
             while(new_b<self.minbs or new_b>self.maxbs):
                 if random.random() > 0.1:
                     new_b = int(np.random.normal(loc=self.breakpoint, scale=(self.maxbs - self.minbs) * 0.2))
@@ -363,8 +403,33 @@ class MCMC_B(MCMC):
             if(len(loglikelihood)>1000 and np.std(loglikelihood[-500:])<0.001):
                 break
 
-
         return self.decode()
+
+
+class MCMC_B_short(MCMC_B):
+    def __init__(self, ciphertext, f1=None, f2=None):
+        MCMC_B.__init__(self, ciphertext, f1, f2)
+        self.b_sigma = 1
+
+
+    def Pf(self, code2idx1, code2idx2, breakpoint):
+        if breakpoint == len(self.ciphertext):
+            return "not exist", "not exist"
+        decoded_text1 = decode_content(self.ciphertext[:breakpoint], code2idx1)
+        decoded_text2 = decode_content(self.ciphertext[breakpoint:], code2idx2)
+        return match_words(decoded_text1), match_words(decoded_text2)
+
+    def generate_f(self, oldf, set1, set2):
+        # set1: "."
+        # set2 : " "
+        a, b = random.sample(self.alphabet, 2)
+        f2 = oldf.copy()
+        f2[a] = oldf[b]
+        f2[b] = oldf[a]
+
+        return f2
+
+
         
 def run(args):
     ciphertext, seed, runningtime = args
@@ -389,7 +454,17 @@ def multi_merge(ciphertext, runningtime1=-1, np=10, runningtime2=-1):
     final_mcmc = MCMC(ciphertext=ciphertext)
     final_mcmc.cur_f = best_f
     final_mcmc.run(runningtime=runningtime2)
-    return final_mcmc.decode(), final_mcmc.cur_f
+    plaintext = final_mcmc.decode()
+    f = final_mcmc.cur_f.copy()
+
+    if len(ciphertext)<SHORT_TEXT:
+        short_mcmc = MCMC_short(ciphertext=ciphertext)
+        short_mcmc.cur_f = f.copy()
+        short_mcmc.run(runningtime=runningtime2)
+        short_plaintext = short_mcmc.decode()
+        if(match_words(short_plaintext)>match_words(plaintext)):
+            return short_plaintext, short_mcmc.cur_f
+    return plaintext, f
 
 def breakpoint_range(content):
     l = 0
@@ -422,26 +497,63 @@ def breakpoint_range(content):
 
     return minbs, maxbs, leftsets, rightsets
 
+
 def decode(ciphertext, has_breakpoint):
     if not has_breakpoint:
-        # plaintext, _ = multi_merge(ciphertext, np=300, runningtime1=5, runningtime2=5)
-        plaintext, _ = multi_merge(ciphertext, np=300)
+        try:
+            plaintext, _ = multi_merge(ciphertext, np=30)
+        except:
+            plaintext, _ = multi_merge(ciphertext, np=5)
         plaintext = refine(plaintext, words)
 
     else:
-        minb, maxb, leftsets, rightsets = breakpoint_range(ciphertext)
-        lefttext, single_f1 = multi_merge(ciphertext[:minb])
-        righttext, single_f2 = multi_merge(ciphertext[maxb:])
-        # lefttext, single_f1 = multi_merge(ciphertext[:minb], runningtime1=10, runningtime2=5)
-        # righttext, single_f2 = multi_merge(ciphertext[maxb:], runningtime1=10, runningtime2=5)
-        try:
-            mcmc = MCMC_B(ciphertext=ciphertext, f1=single_f1, f2=single_f2)
+        minb, maxb, leftsets, rightsets = breakpoint_range(ciphertext)  # for small data, minb=0, maxb=len(str)
+
+        if minb==0 or maxb==len(ciphertext):
+            mcmc = MCMC_B(ciphertext=ciphertext)
             _ = mcmc.run()
             mcmc.refine_breakpoint()
             plaintext = mcmc.decode()
             plaintext = refine(plaintext[:mcmc.breakpoint], words) + refine(plaintext[mcmc.breakpoint:], words)
-        except:
-            plaintext = refine(lefttext, words) + ciphertext[minb:maxb] + refine(righttext, words)
-            traceback.print_exc() #
+
+            if len(ciphertext) < SHORT_TEXT:
+                short_mcmc = MCMC_B_short(ciphertext=ciphertext, f1=mcmc.cur_f1.copy(), f2=mcmc.cur_f2.copy())
+                short_mcmc.cur_f1 = mcmc.cur_f1.copy()
+                short_mcmc.cur_f2 = mcmc.cur_f2.copy()
+                _ = short_mcmc.run()
+                short_mcmc.refine_breakpoint()
+                short_plaintext = short_mcmc.decode()
+                short_plaintext = refine(short_plaintext[:short_mcmc.breakpoint], words) + refine(short_plaintext[short_mcmc.breakpoint:], words)
+
+                if match_words(short_plaintext) > match_words(plaintext):
+                    return short_plaintext
+
+        else:
+            lefttext, single_f1 = multi_merge(ciphertext[:minb])
+            righttext, single_f2 = multi_merge(ciphertext[maxb:])
+            # lefttext, single_f1 = multi_merge(ciphertext[:minb], runningtime1=10, runningtime2=5)
+            # righttext, single_f2 = multi_merge(ciphertext[maxb:], runningtime1=10, runningtime2=5)
+            try:
+                mcmc = MCMC_B(ciphertext=ciphertext, f1=single_f1, f2=single_f2)
+                _ = mcmc.run()
+                mcmc.refine_breakpoint()
+                plaintext = mcmc.decode()
+                plaintext = refine(plaintext[:mcmc.breakpoint], words) + refine(plaintext[mcmc.breakpoint:], words)
+
+                try:
+                    if len(ciphertext) < SHORT_TEXT:
+                        short_mcmc = MCMC_B_short(ciphertext=ciphertext, f1=single_f1, f2=single_f2)
+                        _ = short_mcmc.run()
+                        short_mcmc.refine_breakpoint()
+                        short_plaintext = short_mcmc.decode()
+                        short_plaintext = refine(short_plaintext[:short_mcmc.breakpoint], words) + refine(short_plaintext[short_mcmc.breakpoint:], words)
+
+                        if match_words(short_plaintext)>match_words(plaintext):
+                            return short_plaintext
+                except:
+                    pass
+            except:
+                plaintext = refine(lefttext, words) + ciphertext[minb:maxb] + refine(righttext, words)
+                traceback.print_exc()
 
     return plaintext

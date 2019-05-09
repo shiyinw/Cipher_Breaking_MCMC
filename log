@@ -242,3 +242,322 @@ ComparisonError: strings to compare must have the same length
     raise ComparisonError("strings to compare must have the same length")
 ComparisonError: strings to compare must have the same length
 
+[2019-05-08 22:36:59.588431] !!! ERROR !!!
+[2019-05-08 22:36:59.641794] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 428, in decode
+    plaintext, _ = multi_merge(ciphertext, np=300)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 378, in multi_merge
+    p = Pool(processes=np)
+  File "/usr/lib/python2.7/multiprocessing/__init__.py", line 232, in Pool
+    return Pool(processes, initializer, initargs, maxtasksperchild)
+  File "/usr/lib/python2.7/multiprocessing/pool.py", line 161, in __init__
+    self._repopulate_pool()
+  File "/usr/lib/python2.7/multiprocessing/pool.py", line 225, in _repopulate_pool
+    w.start()
+  File "/usr/lib/python2.7/multiprocessing/process.py", line 130, in start
+    self._popen = Popen(self)
+  File "/usr/lib/python2.7/multiprocessing/forking.py", line 121, in __init__
+    self.pid = os.fork()
+OSError: [Errno 11] Resource temporarily unavailable
+
+[2019-05-08 22:38:23.292095] !!! ERROR !!!
+[2019-05-08 22:38:23.345113] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 428, in decode
+    plaintext, _ = multi_merge(ciphertext, np=300)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 378, in multi_merge
+    p = Pool(processes=np)
+  File "/usr/lib/python2.7/multiprocessing/__init__.py", line 232, in Pool
+    return Pool(processes, initializer, initargs, maxtasksperchild)
+  File "/usr/lib/python2.7/multiprocessing/pool.py", line 161, in __init__
+    self._repopulate_pool()
+  File "/usr/lib/python2.7/multiprocessing/pool.py", line 225, in _repopulate_pool
+    w.start()
+  File "/usr/lib/python2.7/multiprocessing/process.py", line 130, in start
+    self._popen = Popen(self)
+  File "/usr/lib/python2.7/multiprocessing/forking.py", line 121, in __init__
+    self.pid = os.fork()
+OSError: [Errno 11] Resource temporarily unavailable
+
+[2019-05-08 22:40:28.906674] !!! ERROR !!!
+[2019-05-08 22:40:28.959875] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 428, in decode
+    plaintext, _ = multi_merge(ciphertext, np=300)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 378, in multi_merge
+    p = Pool(processes=np)
+  File "/usr/lib/python2.7/multiprocessing/__init__.py", line 232, in Pool
+    return Pool(processes, initializer, initargs, maxtasksperchild)
+  File "/usr/lib/python2.7/multiprocessing/pool.py", line 161, in __init__
+    self._repopulate_pool()
+  File "/usr/lib/python2.7/multiprocessing/pool.py", line 225, in _repopulate_pool
+    w.start()
+  File "/usr/lib/python2.7/multiprocessing/process.py", line 130, in start
+    self._popen = Popen(self)
+  File "/usr/lib/python2.7/multiprocessing/forking.py", line 121, in __init__
+    self.pid = os.fork()
+OSError: [Errno 11] Resource temporarily unavailable
+
+[2019-05-08 22:56:42.806038] !!! ERROR !!!
+[2019-05-08 22:56:42.859017] Traceback (most recent call last):
+  File "test.py", line 84, in main
+    (elapsed_time2, score2, max_score2, output) = test(executable, plaintext, ciphertext_with_breakpoint, True)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-08 22:58:16.059819] !!! ERROR !!!
+[2019-05-08 22:58:16.112233] Traceback (most recent call last):
+  File "test.py", line 84, in main
+    (elapsed_time2, score2, max_score2, output) = test(executable, plaintext, ciphertext_with_breakpoint, True)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-08 23:10:14.185326] !!! ERROR !!!
+[2019-05-08 23:10:14.238957] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 433, in decode
+    lefttext, single_f1 = multi_merge(ciphertext[:minb])
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 379, in multi_merge
+    data = p.map(run, zip([ciphertext]*np, [time.time()*random.random() for i in range(np)], [runningtime1]*np))
+  File "/usr/lib/python2.7/multiprocessing/pool.py", line 253, in map
+    return self.map_async(func, iterable, chunksize).get()
+  File "/usr/lib/python2.7/multiprocessing/pool.py", line 572, in get
+    raise self._value
+IndexError: string index out of range
+
+[2019-05-08 23:13:56.277220] !!! ERROR !!!
+[2019-05-08 23:13:56.330882] (0, 602, (['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ', '.'], ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ', '.']), (['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ', '.'], ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ', '.']))
+Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 434, in decode
+    lefttext, single_f1 = multi_merge(ciphertext[:minb])
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 379, in multi_merge
+    data = p.map(run, zip([ciphertext]*np, [time.time()*random.random() for i in range(np)], [runningtime1]*np))
+  File "/usr/lib/python2.7/multiprocessing/pool.py", line 253, in map
+    return self.map_async(func, iterable, chunksize).get()
+  File "/usr/lib/python2.7/multiprocessing/pool.py", line 572, in get
+    raise self._value
+IndexError: string index out of range
+
+[2019-05-08 23:18:31.172177] !!! ERROR !!!
+[2019-05-08 23:18:31.225104] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 450, in decode
+    plaintext = refine(lefttext, words) + ciphertext[minb:maxb] + refine(righttext, words)
+UnboundLocalError: local variable 'lefttext' referenced before assignment
+
+[2019-05-08 23:20:55.840087] !!! ERROR !!!
+[2019-05-08 23:20:55.893160] Traceback (most recent call last):
+  File "test.py", line 84, in main
+    (elapsed_time2, score2, max_score2, output) = test(executable, plaintext, ciphertext_with_breakpoint, True)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-08 23:26:53.922656] !!! ERROR !!!
+[2019-05-08 23:26:53.975664] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 436, in decode
+    _ = mcmc.run()
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 343, in run
+    pfnew_f1, pfnew_f2 = self.Pf(self.cur_f1, self.cur_f2, new_b)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 291, in Pf
+    logPf2 = logP[code2idx2[self.ciphertext[breakpoint]]]
+IndexError: string index out of range
+
+[2019-05-09 01:59:18.106448] !!! ERROR !!!
+[2019-05-09 01:59:18.159124] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 461, in decode
+    plaintext, _ = multi_merge(ciphertext, np=30)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 420, in multi_merge
+    short_mcmc.run(runningtime=runningtime2)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 181, in run
+    pf2 = self.Pf(f2)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 218, in Pf
+    score = match_words(decoded_text)
+TypeError: match_words() takes exactly 2 arguments (1 given)
+
+[2019-05-09 02:00:31.343814] !!! ERROR !!!
+[2019-05-09 02:00:31.410582] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 461, in decode
+    plaintext, _ = multi_merge(ciphertext, np=30)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 420, in multi_merge
+    short_mcmc.run(runningtime=runningtime2)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 181, in run
+    pf2 = self.Pf(f2)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 218, in Pf
+    score = match_words(decoded_text)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 208, in match_words
+    ws = content.replace(".").split(" ")
+TypeError: replace() takes at least 2 arguments (1 given)
+
+[2019-05-09 02:15:16.588176] !!! ERROR !!!
+[2019-05-09 02:15:16.654348] Traceback (most recent call last):
+  File "./decode", line 7, in <module>
+    from decode import decode
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 503
+    if match_words(short_plaintext)>match_words(plaintext)
+                                                         ^
+SyntaxError: invalid syntax
+
+[2019-05-09 02:15:16.756231] !!! ERROR !!!
+[2019-05-09 02:15:16.826815] Traceback (most recent call last):
+  File "./decode", line 7, in <module>
+    from decode import decode
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 503
+    if match_words(short_plaintext)>match_words(plaintext)
+                                                         ^
+SyntaxError: invalid syntax
+
+[2019-05-09 02:26:42.833926] !!! ERROR !!!
+[2019-05-09 02:26:42.909321] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 470, in decode
+    plaintext, _ = multi_merge(ciphertext, np=300, runningtime1=5, runningtime2=5)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 410, in multi_merge
+    p = Pool(processes=np)
+  File "/usr/lib/python2.7/multiprocessing/__init__.py", line 232, in Pool
+    return Pool(processes, initializer, initargs, maxtasksperchild)
+  File "/usr/lib/python2.7/multiprocessing/pool.py", line 161, in __init__
+    self._repopulate_pool()
+  File "/usr/lib/python2.7/multiprocessing/pool.py", line 225, in _repopulate_pool
+    w.start()
+  File "/usr/lib/python2.7/multiprocessing/process.py", line 130, in start
+    self._popen = Popen(self)
+  File "/usr/lib/python2.7/multiprocessing/forking.py", line 121, in __init__
+    self.pid = os.fork()
+OSError: [Errno 11] Resource temporarily unavailable
+
+[2019-05-09 02:31:16.625570] !!! ERROR !!!
+[2019-05-09 02:31:16.691045] ********************************************************************************************************************************************************************************************************
+foy yefeyedle a shuilac weccedmideeyex xeloxey hon timps rngtis rponcx lodveyme allnyasech wispid as tors a few tidnser. deveyspecerr we wicc accow ealp rsnxeds rngtirriod nu so pony of ynd site so avoix ndxnch uedacizidm ideffilieds gns ospeywire moox itucetedsasiodr. spir ir spe site accossex uey rsnxeds so rsays spe uyomyat adx lacc spe fndlsiod foy acc of spe liupeysejsr ode ci m soieg herce od xfay tecftey tfeprs hmbe m naols or psfwwor. cyoseyofr os qoll seyiormse mdsey mr hfay mrt she tecowheyet seks or she faswas dole fy dolep od pfie cowheyseksp hmbe dorophet ms shms wfors qoll ne apetg
+********************************************************************************************************************************************************************************************************
+Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 490, in decode
+    _ = short_mcmc.run()
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 352, in run
+    pfnew_f1, pfnew_f2 = self.Pf(new_f1, new_f2, self.breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 399, in Pf
+    return smatch_words(decoded_text1), match_words(decoded_text2)
+NameError: global name 'smatch_words' is not defined
+
+[2019-05-09 02:34:28.317655] !!! ERROR !!!
+[2019-05-09 02:34:28.383793] Traceback (most recent call last):
+  File "test.py", line 84, in main
+    (elapsed_time2, score2, max_score2, output) = test(executable, plaintext, ciphertext_with_breakpoint, True)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-09 02:38:17.763674] !!! ERROR !!!
+[2019-05-09 02:38:17.857800] Traceback (most recent call last):
+  File "test.py", line 84, in main
+    (elapsed_time2, score2, max_score2, output) = test(executable, plaintext, ciphertext_with_breakpoint, True)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-09 02:46:00.557347] !!! ERROR !!!
+[2019-05-09 02:46:00.624373] Traceback (most recent call last):
+  File "test.py", line 84, in main
+    (elapsed_time2, score2, max_score2, output) = test(executable, plaintext, ciphertext_with_breakpoint, True)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-09 02:56:59.614563] !!! ERROR !!!
+[2019-05-09 02:56:59.682892] ********************************************************************************************************************************************************************************************************
+for reference a typical wellengineered decoder you might submit should converge accurately within at most a few minutes. nevertheless we will allow each student submission up to hour of run time to avoid unduly penalixing inefficient but otherwise good implementations. this is the time allotted per student to start the program and call the function for all of the ciphertejts one mn a sonex herme ol quid temuted tuefrs have a giops or fsuccor. mdosedour os bopp sednorase alsed ar huid art she temochedet seks or she uiscis lope ud lopef ol fune mochedseksf have lorofhet as shas cuors bopp ge ifetx
+********************************************************************************************************************************************************************************************************
+Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 536, in decode
+    short_mcmc = MCMC_B_short(ciphertext=ciphertext, f1=mcmc.cur_f1.copy(), f2=mcmc.cur_f2.copy())
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 416, in __init__
+    MCMC_B.__init__(ciphertext, f1, f2)
+TypeError: unbound method __init__() must be called with MCMC_B instance as first argument (got str instance instead)
+
+[2019-05-09 03:01:28.787748] !!! ERROR !!!
+[2019-05-09 03:01:28.854652] Traceback (most recent call last):
+  File "test.py", line 84, in main
+    (elapsed_time2, score2, max_score2, output) = test(executable, plaintext, ciphertext_with_breakpoint, True)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-09 03:16:08.392955] !!! ERROR !!!
+[2019-05-09 03:16:08.459085] Traceback (most recent call last):
+  File "test.py", line 84, in main
+    (elapsed_time2, score2, max_score2, output) = test(executable, plaintext, ciphertext_with_breakpoint, True)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-09 03:19:30.927246] !!! ERROR !!!
+[2019-05-09 03:19:30.994160] Traceback (most recent call last):
+  File "test.py", line 84, in main
+    (elapsed_time2, score2, max_score2, output) = test(executable, plaintext, ciphertext_with_breakpoint, True)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
