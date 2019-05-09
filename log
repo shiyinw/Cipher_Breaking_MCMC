@@ -561,3 +561,35 @@ ComparisonError: strings to compare must have the same length
     raise ComparisonError("strings to compare must have the same length")
 ComparisonError: strings to compare must have the same length
 
+[2019-05-09 14:30:41.547309] !!! ERROR !!!
+[2019-05-09 14:30:41.617498] Traceback (most recent call last):
+  File "test.py", line 83, in main
+    (elapsed_time1, score1, max_score1, output) = test(executable, plaintext, ciphertext, False)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-09 14:39:47.529968] !!! ERROR !!!
+[2019-05-09 14:39:47.595739] Traceback (most recent call last):
+  File "test.py", line 83, in main
+    (elapsed_time1, score1, max_score1, output) = test(executable, plaintext, ciphertext, False)
+  File "test.py", line 57, in test
+    score = compare(plaintext, output)
+  File "test.py", line 29, in compare
+    raise ComparisonError("strings to compare must have the same length")
+ComparisonError: strings to compare must have the same length
+
+[2019-05-09 17:24:04.867886] !!! ERROR !!!
+[2019-05-09 17:24:04.933452] Traceback (most recent call last):
+  File "./decode", line 14, in <module>
+    main()
+  File "./decode", line 11, in main
+    print decode(sys.argv[1], has_breakpoint)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 515, in decode
+    plaintext = decode_short(ciphertext)
+  File "/afs/athena.mit.edu/user/s/h/shiyinw/Cipher_Breaking/decode.py", line 412, in decode_short
+    left, _ = multi_merge(ciphertext[:best_breakpoint], np=30)
+NameError: global name 'ciphertext' is not defined
+

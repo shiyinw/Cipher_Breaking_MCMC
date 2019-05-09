@@ -41,7 +41,6 @@ def test(executable_path, plaintext, ciphertext, breakpoint):
     try:
         start_time = time()
         output = subprocess.check_output(['./'+executable_file, ciphertext, str(breakpoint)], stderr=subprocess.STDOUT).rstrip('\r\n')
-        print(output)
         end_time = time()
     except subprocess.CalledProcessError as e:
         os.chdir(start_dir) ###### CHANGE BACK TO ORIGINAL DIRECTORY
@@ -72,11 +71,6 @@ def main():
     plaintext = first_line('./test_plaintext.txt')
     ciphertext = first_line('./test_ciphertext.txt')
     ciphertext_with_breakpoint = first_line('./test_ciphertext_breakpoint.txt')
-
-    name = "warandpeace"
-    plaintext = first_line('data/plaintext_{}.txt'.format(name))
-    ciphertext = first_line('data/ciphertext_{}.txt'.format(name))
-    ciphertext_with_breakpoint = first_line('data/ciphertext_{}_breakpoint.txt'.format(name))
 
     print "Running your code..."
     try:
